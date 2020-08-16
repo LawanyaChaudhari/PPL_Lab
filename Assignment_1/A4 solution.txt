@@ -1,0 +1,5 @@
+1.Arrays declared in a single statement with no initialization and size is already given. Initialization takes place one element per statement on scope entry.
+
+2.This probably simplifies many things.
+
+3.To mark the arrays as invalid at scope exit .

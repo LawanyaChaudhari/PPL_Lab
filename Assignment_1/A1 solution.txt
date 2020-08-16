@@ -1,0 +1,16 @@
+
+1.Declarations in gimple are more simplified than the input code.  It forms a more basic block for computations. 
+Especially when multiple variables are declared in a single line, gimple assigns a new variable to the variables before the line where multiple variables are declared by breaking them down to smaller tuples to eliminate them and replaces them with a single variable for further calculations.  
+Global representation [int {z}] is applied in the whole code is done simply by assigning a variable to the value of  ‘z’ where ever it is needed and converts the number into integer before it is assigned to ‘z’.
+
+2.[c = a*b + 25] is broken down as follows:
+First, a*b is assigned with a temporary variable ‘_1’:
+_1= a*b
+Then, ‘_1’ is implemented in the next operation in the place of ‘a*b’:
+c = _1 + 25
+Temporary variables are assigned when there are multiple variables in a single line to eliminate them and converge them to single variable before the given operation is done.
+First temporary variable is assigned as _1 the next as _2 and so on..
+
+3.Floats and doubles are represented using scientific notation. An explicit cast is inserted when a float is assigned to an int.
+
+4.A temporary variable is required for Z = Z + 1 because the result of the computation Z + 1 cannot be directly implemented and stored to a memory location.
